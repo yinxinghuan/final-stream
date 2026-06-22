@@ -240,18 +240,18 @@ export default function Game() {
           />
         )}
 
-        {/* Title card + tap hint — visible before first tap, retire after. */}
+        {/* Stream-info bar — persistent like a real Twitch overlay. Dims slightly mid-clip. */}
+        <div className={`lc-title ${phase !== 'idle' ? 'lc-title--dim' : ''}`}>
+          <div className="lc-title__overline">
+            <span className="lc-title__livedot" aria-hidden />
+            <span>LIVE &nbsp;·&nbsp; just chatting</span>
+          </div>
+          <div className="lc-title__main">rileyontheradio</div>
+          <div className="lc-title__sub">8.2K viewers &nbsp;·&nbsp; 4h 12m &nbsp;·&nbsp; long beach, ca</div>
+        </div>
+        {/* Tap hint — only before first interaction */}
         {phase === 'idle' && taps.size === 0 && (
-          <>
-            <div className="lc-title">
-              <div className="lc-title__overline">
-                <span>🔴 LIVE &nbsp;·&nbsp; just chatting</span>
-              </div>
-              <div className="lc-title__main">rileyontheradio</div>
-              <div className="lc-title__sub">8.2K viewers &nbsp;·&nbsp; 4h 12m &nbsp;·&nbsp; long beach, ca</div>
-            </div>
-            <div className="lc-firsthint">{t('hint.firstTap')}</div>
-          </>
+          <div className="lc-firsthint">{t('hint.firstTap')}</div>
         )}
 
         {/* Hotspots + affordances (idle only). Tapped hotspots stay clickable but are visually dimmed. */}
